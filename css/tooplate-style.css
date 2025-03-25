@@ -10,6 +10,16 @@ h1 {
   font-size: 2.8rem;
 }
 
+h1:hover{
+  color: #5ef686;
+  transform: scale(1.2); /* Increase size by 20% */
+  transition: transform 0.3s ease-in-out;
+}
+
+p:hover{
+  color: #8bf0fd;
+}
+
 #tm-bg {
   position: fixed;
   top: 0;
@@ -78,7 +88,6 @@ p {
   list-style: none;
   display: inline-block;
   border: 1px solid white;
-  float: left;
   margin: 10px;
 }
 
@@ -112,8 +121,10 @@ p {
 }
 
 .product:hover {
-  background: #2c8e31;
+  background: #1e5f36;
   color: #a9a9a9;
+  transform: scale(1.2); /* Increase size by 20% */
+  transition: transform 0.3s ease-in-out;
 }
 
 .tm-nav-icon {
@@ -181,7 +192,7 @@ p {
 }
 
 .blur-container {
-  background-color: rgba(255, 255, 255, 0.081); /* White background with transparency */
+  background-color: rgba(255, 255, 255, 0.134); /* White background with transparency */
   backdrop-filter: blur(10px); /* Applying the blur effect */
   padding: 20px;
   border-radius: 10px;
@@ -230,16 +241,27 @@ p {
 
 /* Team */
 .tm-reverse-sm {
-  flex-direction: row;
+  display: flex; /* Correct property for using flexbox */
   align-items: center; /* Ensure items are vertically centered */
 }
 
-
 /* Our Work */
 .tm-slider-img-link {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  overflow: visible; /* Allow full image visibility on hover */
+  width: 150px; /* Set a fixed width */
+  height: 160px; /* Set a fixed height */
 }
+
+.tm-slider-img-link:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.7); /* Glow color: Green */
+  transform: scale(1.4) rotate(360deg); /* Scale up and rotate simultaneously */
+  transition: transform 0.3s ease-in-out;
+}
+
 
 .slick-dots li button:before {
   font-size: 20px;
@@ -259,7 +281,7 @@ p {
 
 .slick-dots li.slick-active button:before {
   opacity: 0.75;
-  color: deepskyblue;
+  color: rgb(84, 238, 235);
 }
 
 /* Contact */
@@ -267,14 +289,14 @@ p {
   font-size: 1.1rem;
   border-radius: 0;
   border: none;
-  background-color: #353541;
+  background-color: #67d2f2;
   color: white;
   padding: 0.75rem;
 }
 
 .form-control:focus {
   color: #cecece;
-  background-color: #4d4c59;
+  background-color: #59ede8;
   border-color: transparent;
 }
 
@@ -283,16 +305,16 @@ p {
 }
 
 .tm-btn-submit {
-  background-color: #006599;
+  background-color: #49caae;
 }
 
 .tm-btn-gray {
-  background-color: #494752;
+  background-color: #b4a7ed;
   color: white;
 }
 
 .tm-btn-gray:hover {
-  background-color: #77757d;
+  background-color: #9472fd;
   color: white;
 }
 
@@ -417,4 +439,3 @@ p:last-child {
   .fa-3x {
     font-size: 2.2em;
   }
-
