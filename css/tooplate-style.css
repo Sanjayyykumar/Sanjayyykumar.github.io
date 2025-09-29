@@ -13,7 +13,7 @@ h1 {
 }
 
 h1:hover{
-  color: #5ef686;
+  color: #024333;
   transform: scale(1.2); /* Increase size by 20% */
   transition: all 0.3s ease-in-out;
 }
@@ -38,7 +38,7 @@ h2 {
 }
 
 p:hover{
-  color: #71ebfb;
+  color: #28fbfb;
   transition: all 0.2s ease-in-out;
 }
 
@@ -145,8 +145,8 @@ p {
 }
 
 .product:hover {
-  background: #262626;
-  color: #a9a9a9;
+  background: #011e0c;
+  color: #003722;
   transform: scale(1.14); /* Increase size by 20% */
   transition: transform 0.3s ease-in-out;
 }
@@ -338,12 +338,12 @@ p {
 }
 
 .tm-btn-gray {
-  background-color: #003157;
+  background-color: #003507;
   color: white;
 }
 
 .tm-btn-gray:hover {
-  background-color: #2c1d59;
+  background-color: #1c0237;
   color: white;
 }
 
@@ -358,7 +358,7 @@ p {
 }
 
 .btn-primary:hover {
-  background-color: #340348;
+  background-color: #2b023b;
   border-color: transparent;
 }
 
@@ -371,9 +371,9 @@ p {
 }
 
 .btn-outline-secondary:hover {
-  color: #39ff14;
-  background-color: #fff;
-  border-color: #39ff14;
+  color: #f9faf9;
+  background-color: #153502;
+  border-color: #0c4e00;
   box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14;
 }
 
@@ -392,7 +392,7 @@ footer {
   color: white;
 }
 .tm-text-highlight:hover {
-  color: red;
+  color: rgb(72, 0, 0);
 }
 .tm-main-content.tm-footer-relative {
   flex-direction: column;
@@ -690,7 +690,7 @@ p:last-child {
 /* Mobile Portrait */
 @media (max-width: 544px) {
   .product:hover {
-   transform: scale(1); /* Disable scaling on hover for mobile portrait screens */
+   transform: scale(1.2); /* Disable scaling on hover for mobile portrait screens */
  }
   .tm-main-content {
     padding: 10px 5px; /* Further reduced padding */
@@ -820,7 +820,7 @@ p:last-child {
 /* Responsive adjustments for content sections */
 @media (max-width: 768px) {
   .product:hover {
-     transform: scale(1); /* Disable scaling on hover for mobile landscape screens */
+     transform: scale(1.2); /* Disable scaling on hover for mobile landscape screens */
   }
   .welcome-title, .about-title, .works-title, .contact-title {
     font-size: 1.8rem; /* Slightly smaller font size */
@@ -1003,7 +1003,7 @@ p:last-child {
 }
 
 .contact-item a:hover {
-  color: #39ff14;
+  color: #379d25;
   text-decoration: underline;
 }
 
@@ -1134,10 +1134,10 @@ p:last-child {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-.email-link:hover { background-color: #D44638; } /* Gmail red */
-.whatsapp-link:hover { background-color: #25d366; } /* WhatsApp green */
-.linkedin-link:hover { background-color: #0077B5; } /* LinkedIn blue */
-.github-link:hover { background-color: #6e5494; } /* GitHub purple */
+.email-link:hover { background-color: #3d0601; } /* Gmail red */
+.whatsapp-link:hover { background-color: #032b11; } /* WhatsApp green */
+.linkedin-link:hover { background-color: #012639; } /* LinkedIn blue */
+.github-link:hover { background-color: #251f2e; } /* GitHub purple */
 
 /* Responsive adjustments for Contact Section */
 @media (max-width: 991px) {
@@ -1340,18 +1340,18 @@ p:last-child {
 }
 
 .about-card-title, .experience-main-title {
-  color: #39ff14;
-  font-size: 1.8rem;
+  color: #61dfd0;
+  font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   gap: 10px;
-  text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+  text-shadow: 0 0 5px rgba(41, 147, 95, 0.5);
 }
 
 .about-text {
-  font-size: 1.1rem;
+  font-size: 0.5rem;
   color: #e0e0e0;
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -1492,14 +1492,14 @@ p:last-child {
 }
 
 .resume-btn {
-  background-color: #399ac3;
+  background-color: #002738;
   color: white;
   border-color: #399ac3;
   margin-right: 10px;
 }
 
 .resume-btn:hover {
-  background-color: #29023e;
+  background-color: #210033;
   border-color: #29023e;
 }
 
@@ -1761,7 +1761,7 @@ p:last-child {
 }
 
 .skill-category-modern h5 {
-  color: #00bfff;
+  color: #fdfffe;
   font-size: 1.1rem;
   margin-bottom: 1rem;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
@@ -2096,10 +2096,10 @@ p:last-child {
 }
 
 .about-name {
-  font-size: 2.5rem; /* Slightly larger for prominence */
-  font-weight: 800; /* Bolder */
-  color: #5ef686; /* A vibrant green */
-  text-shadow: 0 0 8px rgba(94, 246, 134, 0.7); /* Enhanced glow */
+  font-size: 0.5rem; /* Slightly larger for prominence */
+  font-weight: 900; /* Bolder */
+  color: #35746d; /* A vibrant green */
+  text-shadow: 0 0 8px rgba(94, 246, 233, 0.7); /* Enhanced glow */
   margin-bottom: 0.8rem;
   letter-spacing: 1px;
 }
@@ -2283,7 +2283,7 @@ p:last-child {
 }
 
 .about-personal-info li strong {
-  color: #5ef686; /* Vibrant green for strong text */
+  color: #4cfd7b; /* Vibrant green for strong text */
   font-weight: 700; /* Bolder */
 }
 
@@ -2316,7 +2316,7 @@ p:last-child {
 }
 
 .profile-img-responsive {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -2431,14 +2431,14 @@ p:last-child {
 @media (max-width: 576px) {
   /* About Myself Section - Modern Resume Styling */
 .about-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .about-name {
-  font-size: 2.5rem; /* Slightly larger for prominence */
-  font-weight: 800; /* Bolder */
-  color: #5ef686; /* A vibrant green */
-  text-shadow: 0 0 8px rgba(94, 246, 134, 0.7); /* Enhanced glow */
+  font-size: 1.3rem; /* Slightly larger for prominence */
+  font-weight: 700; /* Bolder */
+  color: #20cb87; /* A vibrant green */
+  text-shadow: 0 0 8px rgba(94, 246, 135, 0.629); /* Enhanced glow */
   margin-bottom: 0.8rem;
   letter-spacing: 1px;
 }
@@ -2524,7 +2524,7 @@ p:last-child {
 }
 
 .profile-img-responsive {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
