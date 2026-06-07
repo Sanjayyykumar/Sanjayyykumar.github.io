@@ -18,13 +18,21 @@
     
 </head>
 
-<body>
+<body class="scroll-locked">
+    <div id="entrance-gate">
+        <canvas id="shatter-canvas"></canvas>
+        <div class="entrance-content">
+            <div class="entrance-icon"><i class="fas fa-lock"></i></div>
+            <h2 class="entrance-title">Sanjay's Digital Space</h2>
+            <div class="entrance-btn">Click to Shatter & Enter</div>
+        </div>
+    </div>
     <div id="tm-bg"></div>
     <div id="tm-wrap">
         <div class="tm-main-content">
             <div class="container tm-site-header-container">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
+                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
                         <div class="tm-site-header">
                             <h1 class="mb-4 rainbow-text">Sanjay's Portfolio</h1>
                             <img src="img/underline.png" class="img-fluid mb-4" alt="underline image">
@@ -49,16 +57,35 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                    <div class="blur-container" >
-                                                   <p> I'm delighted to have you here exploring my digital space. 
+                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-4 mb-lg-0">
+                                                    <div class="blur-container">
+                                                        <p>I'm delighted to have you here exploring my digital space. 
                                                         This portfolio represents my journey, passion, and dedication to creating 
-                                                        meaningful solutions through technology</p>
-                                                      
+                                                        meaningful solutions through technology.</p>
+                                                        <br>
+                                                        <p>Thanks & Regards,<br><b>Sanjay Kumar S</b></p>
+                                                    </div>
                                                 </div>
-                                               <br> <p>Thanks & Regards, <br> <b>Sanjay Kumar S</b> </p>
-                                            </div>
-                                                                                      
+                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                                    <div class="blur-container">
+                                                        <h4 class="mb-3" style="color:#71ebfb; font-size:1.15rem; font-weight:700;"><i class="fas fa-briefcase"></i> Core Qualifications</h4>
+                                                        <p style="font-size:0.95rem; line-height:1.5; color:#ddd; margin-bottom:15px;">Java Full Stack developer specializing in scalable services, cloud computing, and lifecycle management domains.</p>
+                                                        <div class="metric-grid">
+                                                            <div class="metric-card">
+                                                                <div class="metric-number">3+</div>
+                                                                <div class="metric-label">Years Exp</div>
+                                                            </div>
+                                                            <div class="metric-card">
+                                                                <div class="metric-number">10+</div>
+                                                                <div class="metric-label">Projects</div>
+                                                            </div>
+                                                            <div class="metric-card">
+                                                                <div class="metric-number">4+</div>
+                                                                <div class="metric-label">Domains</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             
                                         </div>
@@ -150,10 +177,12 @@ through my technical expertise and collaborative approach. </p>
                                                                                 <h4>Java Full Stack developer L2</h4>
                                                                                 <span class="timeline-period-modern">Latest Position</span>
                                                                             </div>
-                                                                            <p class="timeline-description-modern">
-                                                                                <ul><li>Engineered a full-stack e-commerce solution enabling seamless product browsing, cart operations, and secure payment processing For JFS Project.</li></ul>
-<ul><li>Responsible for developing all requirements outlined in the High-Level Design Document for a complete phase as well as ensured quality of the requirements developed in several phases, and successfully delivered the project with the team,achieving zero or minimal errors for WFM project.</li></ul>
-                                                                            </p>
+                                                                            <div class="timeline-description-modern">
+                                                                                <ul class="timeline-bullets">
+                                                                                    <li><strong>Engineered</strong> a full-stack e-commerce solution enabling seamless product browsing, cart operations, and secure payment processing for the JFS Project.</li>
+                                                                                    <li><strong>Developed</strong> all key core requirements outlined in the HLD, ensuring quality across multiple phases, and led project delivery for the WFM project with minimal defects.</li>
+                                                                                </ul>
+                                                                            </div>
                                                                             <div class="timeline-skills-modern">
                                                                                 <span class="timeline-skill-modern">Full-Stack Development</span>
                                                                                 <span class="timeline-skill-modern">Cloud Solutions</span>
@@ -169,10 +198,12 @@ through my technical expertise and collaborative approach. </p>
                                                                                 <h4>Project Engineer</h4>
                                                                                 <span class="timeline-period-modern">Previous Role</span>
                                                                             </div>
-                                                                            <p class="timeline-description-modern">
-                                                                                <ul><li>Actively participated in organizing the requirements needed and documented as per the client specifications. Assisted senior developers in Unit testing with use of Rest API’s along with Enovia PLM 3D experience application for PDM project.</li></ul>
-<ul><li>Actively participated in project planning and completed assigned tasks. Focused on understanding the requirements and assisted senior developers with tasks such as JPO file merging, search optimization, adding attributes using MQL queries, and handling import / export of codes into Test environment for Chevron project. </li></ul>
-                                                                            </p>
+                                                                            <div class="timeline-description-modern">
+                                                                                <ul class="timeline-bullets">
+                                                                                    <li><strong>Organized</strong> and documented project requirements based on client specifications, and assisted in unit testing APIs with Enovia PLM 3DExperience for the PDM project.</li>
+                                                                                    <li><strong>Optimized</strong> search functionality, managed attributes via MQL queries, assisted in JPO file merging, and handled code environment deployment for the Chevron project.</li>
+                                                                                </ul>
+                                                                            </div>
                                                                             <div class="timeline-skills-modern">
                                                                                 <span class="timeline-skill-modern">PLM Developer </span>
                                                                                 <span class="timeline-skill-modern">Quality Assurance</span>
@@ -224,11 +255,37 @@ through my technical expertise and collaborative approach. </p>
                                                     <div class="col-12">
                                                         <div class="p-sm-7 p-4 tm-img-container">
                                                             <div class="pj">
-                                                            <div class="tm-img-slider" id="tmImgSlider">
-                                                              <a href="https://simplerps.netlify.app" class="tm-slider-img-link"><img src="img/RPS_Main.jpg" alt="Rock Papers Scissors Project" class="img-fluid tm-slider-img"></a>
-                                                              <a href="https://zgallaria.netlify.app/" class="tm-slider-img-link"><img src="img/z_galaria.jpg" alt="Gallaria" class="img-fluid tm-slider-img"></a>
-                                                              <a href="https://sanjay-kumar-s.netlify.app/" class="tm-slider-img-link"><img src="img/portfolio.jpg" alt="Portfolio" class="img-fluid tm-slider-img"></a>
-                                                            </div></div>
+                                                                <div class="tm-img-slider" id="tmImgSlider">
+                                                                    <a href="https://jungleboxoo.netlify.app/" class="tm-slider-img-link" target="_blank" rel="noopener noreferrer">
+                                                                        <img src="img/jungleboxoo.jpg" alt="Jungle Boxoo Aztec Trials" class="img-fluid tm-slider-img">
+                                                                        <div class="project-info">
+                                                                            <h5>Jungle Boxoo</h5>
+                                                                            <p>Aztec-themed dots & boxes puzzle game with smooth animations.</p>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="https://simplerps.netlify.app" class="tm-slider-img-link" target="_blank" rel="noopener noreferrer">
+                                                                        <img src="img/RPS_Main.jpg" alt="Rock Papers Scissors Project" class="img-fluid tm-slider-img">
+                                                                        <div class="project-info">
+                                                                            <h5>Simple RPS</h5>
+                                                                            <p>Classic Rock-Paper-Scissors game featuring retro arcade aesthetics.</p>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="https://zgallaria.netlify.app/" class="tm-slider-img-link" target="_blank" rel="noopener noreferrer">
+                                                                        <img src="img/z_galaria.jpg" alt="Gallaria" class="img-fluid tm-slider-img">
+                                                                        <div class="project-info">
+                                                                            <h5>Z Gallaria</h5>
+                                                                            <p>Luxury furniture showroom showcase template.</p>
+                                                                        </div>
+                                                                    </a>
+                                                                    <a href="https://sanjay-kumar-s.netlify.app/" class="tm-slider-img-link" target="_blank" rel="noopener noreferrer">
+                                                                        <img src="img/portfolio.jpg" alt="Portfolio" class="img-fluid tm-slider-img">
+                                                                        <div class="project-info">
+                                                                            <h5>My Portfolio</h5>
+                                                                            <p>Personal responsive portfolio website built with modern UI design.</p>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -264,117 +321,135 @@ through my technical expertise and collaborative approach. </p>
                                                       <div class="contact-subtitle">Let's start a conversation and create something amazing together</div>
                                                       <div class="contact-divider"></div>
                                                   </div>
-                                              </div>
-                                              <div class="row mb-4">
-                                                  
-                                                 <div class="row">
-                                              <!-- Contact Information -->
-                                              <div class="col-12 col-lg-6 mb-4">
-                                                  <div class="blur-container contact-info-card">
-                                                      <h3><i class="fas fa-address-card"></i> Contact Information</h3>
-                                                      <div class="contact-items">
-                                                          <div class="contact-item">
-                                                              <i class="fas fa-envelope"></i>
-                                                              <div>
-                                                                  <h5>Email</h5>
-                                                                  <p>sanjayyykumarr23@gmail.com</p>
-                                                              </div>
-                                                          </div>
-                                                          <div class="contact-item">
-                                                              <i class="fas fa-phone"></i>
-                                                              <div>
-                                                                  <h5>Phone</h5>
-                                                                  <p>+91 9741879958</p>
-                                                                  <a href="https://wa.me/+919741879958" class="whatsapp-contact">
-                                                                      <i class="fab fa-whatsapp"></i> WhatsApp
-                                                                  </a>
-                                                              </div>
-                                                          </div>
-                                                          <div class="contact-item">
-                                                              <i class="fas fa-map-marker-alt"></i>
-                                                              <div>
-                                                                  <h5>Location</h5>
-                                                                  <p>Bengaluru, India</p>
-                                                              </div>
-                                                          </div>
-                                                          <div class="contact-item">
-                                                              <i class="fab fa-linkedin"></i>
-                                                              <div>
-                                                                  <h5>LinkedIn</h5>
-                                                                  <a href="https://www.linkedin.com/in/sanjay-kumar-s-2k/" target="_blank" rel="noopener noreferrer">
-                                                                      Connect with me on LinkedIn
-                                                                  </a>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
+                                               </div>
+                                               
+                                               <div class="row mb-4">
+                                                   <!-- Contact Information -->
+                                                   <div class="col-12 col-lg-6 mb-4">
+                                                       <div class="blur-container contact-info-card">
+                                                           <h3><i class="fas fa-address-card"></i> Contact Information</h3>
+                                                           <div class="contact-items">
+                                                               <div class="contact-item">
+                                                                   <i class="fas fa-envelope"></i>
+                                                                   <div>
+                                                                       <h5>Email</h5>
+                                                                       <p>sanjayyykumarr23@gmail.com</p>
+                                                                   </div>
+                                                               </div>
+                                                               <div class="contact-item">
+                                                                   <i class="fas fa-phone"></i>
+                                                                   <div>
+                                                                       <h5>Phone</h5>
+                                                                       <p>+91 9741879958</p>
+                                                                       <a href="https://wa.me/+919741879958" class="whatsapp-contact" target="_blank" rel="noopener noreferrer">
+                                                                           <i class="fab fa-whatsapp"></i> WhatsApp
+                                                                       </a>
+                                                                   </div>
+                                                               </div>
+                                                               <div class="contact-item">
+                                                                   <i class="fas fa-map-marker-alt"></i>
+                                                                   <div>
+                                                                       <h5>Location</h5>
+                                                                       <p>Bengaluru, India</p>
+                                                                   </div>
+                                                               </div>
+                                                               <div class="contact-item">
+                                                                   <i class="fab fa-linkedin"></i>
+                                                                   <div>
+                                                                       <h5>LinkedIn</h5>
+                                                                       <a href="https://www.linkedin.com/in/sanjay-kumar-s-2k/" target="_blank" rel="noopener noreferrer">
+                                                                           Connect with me on LinkedIn
+                                                                       </a>
+                                                                   </div>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                   </div>
 
-                                              <!-- Quick Actions -->
-                                              <div class="col-12 col-lg-6 mb-4">
-                                                  <div class="blur-container quick-actions-card">
-                                                      <h3><i class="fas fa-rocket"></i> Quick Actions</h3>
-                                                      <div class="quick-actions">
-                                                          <a href="https://drive.google.com/drive/folders/1IKn4nfx2shF2uSIcQ3fAXezCyQF_dPf4?usp=drive_link"
-                                                             class="action-btn resume-btn" target="_blank" rel="noopener noreferrer">
-                                                              <i class="fas fa-download"></i>
-                                                              <div>
-                                                                  <h5>Download Resume</h5>
-                                                                  <p>Get my latest CV and portfolio</p>
-                                                              </div>
-                                                          </a>
-                                                          <a href="https://github.com/Sanjayyykumar" class="action-btn github-btn" target="_blank" rel="noopener noreferrer">
-                                                              <i class="fab fa-github"></i>
-                                                              <div>
-                                                                  <h5>View GitHub</h5>
-                                                                  <p>Check out my code repositories</p>
-                                                              </div>
-                                                          </a>
-                                                          <a href="https://sanjay-kumar-s.netlify.app/" class="action-btn website-btn" target="_blank" rel="noopener noreferrer">
-                                                              <i class="fas fa-globe"></i>
-                                                              <div>
-                                                                  <h5>Visit Website</h5>
-                                                                  <p>Explore my other projects</p>
-                                                              </div>
-                                                          </a>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
+                                                   <!-- Quick Actions -->
+                                                   <div class="col-12 col-lg-6 mb-4">
+                                                       <div class="blur-container quick-actions-card">
+                                                           <h3><i class="fas fa-rocket"></i> Quick Actions</h3>
+                                                           <div class="quick-actions">
+                                                               <a href="https://drive.google.com/drive/folders/1IKn4nfx2shF2uSIcQ3fAXezCyQF_dPf4?usp=drive_link"
+                                                                  class="action-btn resume-btn" target="_blank" rel="noopener noreferrer">
+                                                                   <i class="fas fa-download"></i>
+                                                                   <div>
+                                                                       <h5>Download Resume</h5>
+                                                                       <p>Get my latest CV and portfolio</p>
+                                                                   </div>
+                                                               </a>
+                                                               <a href="https://github.com/Sanjayyykumar" class="action-btn github-btn" target="_blank" rel="noopener noreferrer">
+                                                                   <i class="fab fa-github"></i>
+                                                                   <div>
+                                                                       <h5>View GitHub</h5>
+                                                                       <p>Check out my code repositories</p>
+                                                                   </div>
+                                                               </a>
+                                                               <a href="https://sanjay-kumar-s.netlify.app/" class="action-btn website-btn" target="_blank" rel="noopener noreferrer">
+                                                                   <i class="fas fa-globe"></i>
+                                                                   <div>
+                                                                       <h5>Visit Website</h5>
+                                                                       <p>Explore my other projects</p>
+                                                                   </div>
+                                                               </a>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
 
-                                          <!-- Contact Message -->
-                                          <div class="row mt-4">
-                                              <div class="col-12">
-                                                  <div class="blur-container contact-message">
-                                                      <div class="text-center">
-                                                          <i class="fas fa-heart contact-heart"></i>
-                                                          <h4>Thank You for Your Interest!</h4>
-                                                          <p class="contact-message-text">
-                                                              I'm always excited to connect with fellow developers, potential collaborators,
-                                                              and anyone interested in technology. Whether you have a project in mind,
-                                                              want to discuss opportunities, or just want to say hello, I'd love to hear from you!
-                                                          </p>
-                                                          <div class="contact-cta">
-                                                              <p class="cta-text">Ready to start a conversation?</p>
-                                                              <div class="social-links">
-                                                                  <a href="mailto:sanjayyykumarr23@gmail.com" class="social-link email-link">
-                                                                      <i class="fas fa-envelope"></i>
-                                                                  </a>
-                                                                  <a href="https://wa.me/+919741879958" class="social-link whatsapp-link">
-                                                                      <i class="fab fa-whatsapp"></i>
-                                                                  </a>
-                                                                  <a href="https://www.linkedin.com/in/sanjay-kumar-s-2k/" class="social-link linkedin-link">
-                                                                      <i class="fab fa-linkedin"></i>
-                                                                  </a>
-                                                                  <a href="https://github.com/Sanjayyykumar" class="social-link github-link">
-                                                                      <i class="fab fa-github"></i>
-                                                                  </a>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
+                                               <!-- Contact Message & Form -->
+                                               <div class="row mt-4">
+                                               <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                                                   <div class="blur-container contact-message" style="height: 100%; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0;">
+                                                       <div class="text-center">
+                                                           <i class="fas fa-heart contact-heart"></i>
+                                                           <h4>Thank You for Your Interest!</h4>
+                                                           <p class="contact-message-text" style="font-size:0.95rem;">
+                                                               I'm always excited to connect with fellow developers, potential collaborators,
+                                                               and anyone interested in technology. Let's work together to build something amazing!
+                                                           </p>
+                                                           <div class="contact-cta">
+                                                               <div class="social-links">
+                                                                   <a href="mailto:sanjayyykumarr23@gmail.com" class="social-link email-link" title="Email me">
+                                                                       <i class="fas fa-envelope"></i>
+                                                                   </a>
+                                                                   <a href="https://wa.me/+919741879958" class="social-link whatsapp-link" target="_blank" rel="noopener noreferrer" title="WhatsApp Chat">
+                                                                       <i class="fab fa-whatsapp"></i>
+                                                                   </a>
+                                                                   <a href="https://www.linkedin.com/in/sanjay-kumar-s-2k/" class="social-link linkedin-link" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                                                                       <i class="fab fa-linkedin"></i>
+                                                                   </a>
+                                                                   <a href="https://github.com/Sanjayyykumar" class="social-link github-link" target="_blank" rel="noopener noreferrer" title="GitHub Profile">
+                                                                       <i class="fab fa-github"></i>
+                                                                   </a>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <div class="col-12 col-lg-6">
+                                                   <div class="blur-container contact-form-container" style="height: 100%;">
+                                                       <h4 class="mb-3" style="color: #39ff14; font-weight: 700; text-shadow: 0 0 5px rgba(57,255,20,0.5);"><i class="fas fa-paper-plane"></i> Send a Message</h4>
+                                                       <form action="mailto:sanjayyykumarr23@gmail.com" method="post" enctype="text/plain">
+                                                           <div class="mb-3">
+                                                               <input type="text" name="name" class="form-control glass-input" placeholder="Your Name" required>
+                                                           </div>
+                                                           <div class="mb-3">
+                                                               <input type="email" name="email" class="form-control glass-input" placeholder="Your Email" required>
+                                                           </div>
+                                                           <div class="mb-3">
+                                                               <textarea name="message" class="form-control glass-input" rows="3" placeholder="Your Message" required></textarea>
+                                                           </div>
+                                                           <div class="text-right">
+                                                               <button type="submit" class="btn btn-outline-secondary" style="font-size:1rem; padding: 0.4rem 1.8rem;">
+                                                                   <i class="fas fa-envelope"></i> Send Email
+                                                               </button>
+                                                           </div>
+                                                       </form>
+                                                   </div>
+                                               </div>
+                                           </div>
                                       </div>
                                   </div>
                                     </div>
