@@ -27,10 +27,45 @@
 		initEvents() {
 			// close page when outside of page is clicked.
 			document.body.addEventListener('click', () => this.close());
-			// prevent close page when inside of page is clicked.
-			this.DOM.bgDown.addEventListener('click', function(event) {
-							event.stopPropagation();
-						});
+			// prevent close page when inside of page is clicked, and handle in-modal panel toggles
+			this.DOM.bgDown.addEventListener('click', (event) => {
+				// Handle clicking the "Send a Message" circular button in top-right
+				const sendMsgBtn = event.target.closest('.send-msg-circle-btn');
+				if (sendMsgBtn) {
+					const thankYouCard = this.DOM.description.querySelector('#thank-you-card');
+					const formCard = this.DOM.description.querySelector('#send-msg-form-card');
+					const triggerContainer = this.DOM.description.querySelector('.send-msg-trigger-container');
+					if (thankYouCard && formCard) {
+						thankYouCard.classList.add('hidden');
+						formCard.classList.add('show');
+					}
+					if (triggerContainer) {
+						triggerContainer.classList.add('hidden');
+					}
+					event.stopPropagation();
+					return;
+				}
+
+				// Handle clicking the close button on the form card
+				const formCloseBtn = event.target.closest('.form-close-btn');
+				if (formCloseBtn) {
+					const thankYouCard = this.DOM.description.querySelector('#thank-you-card');
+					const formCard = this.DOM.description.querySelector('#send-msg-form-card');
+					const triggerContainer = this.DOM.description.querySelector('.send-msg-trigger-container');
+					if (thankYouCard && formCard) {
+						formCard.classList.remove('show');
+						thankYouCard.classList.remove('hidden');
+					}
+					if (triggerContainer) {
+						triggerContainer.classList.remove('hidden');
+					}
+					event.stopPropagation();
+					return;
+				}
+
+				// Default propagation stop to prevent modal close when clicking inside
+				event.stopPropagation();
+			});
 			// close page when cross button is clicked.
 			this.DOM.close.addEventListener('click', () => this.close());
 		}
@@ -61,6 +96,16 @@
 
 			this.DOM.details.classList.add('details--open');
 
+			// Hide quick actions overlay if open, and hide circular button
+			const qaOverlay = document.getElementById('quick-actions-overlay');
+			if (qaOverlay) {
+				qaOverlay.classList.remove('show');
+			}
+			const qaBtn = document.getElementById('quick-actions-btn');
+			if (qaBtn) {
+				qaBtn.classList.add('hidden');
+			}
+
 			this.DOM.productBg = data.productBg;
 
 			this.DOM.productBg.style.opacity = 0;
@@ -73,9 +118,8 @@
             // animate background
             anime({
                 targets: [this.DOM.bgDown],
-                duration: (target, index) => index ? 800 : 250,
-                easing: (target, index) => index ? 'easeOutElastic' : 'easeOutSine',
-                elasticity: 250,
+                duration: 180,
+                easing: 'easeOutSine',
                 translateX: 0,
                 translateY: 0,
                 scaleX: 1,
@@ -86,18 +130,18 @@
             // animate content
             anime({
                 targets: [this.DOM.description],
-                duration: 1000,
-                easing: 'easeOutExpo',                
-                translateY: ['100%',0],
+                duration: 250,
+                easing: 'easeOutQuart',                
+                translateY: [30, 0],
                 opacity: 1
             });
 
             // animate close button
             anime({
                 targets: this.DOM.close,
-                duration: 250,
+                duration: 150,
                 easing: 'easeOutSine',
-                translateY: ['100%',0],
+                translateY: [15, 0],
                 opacity: 1
             });
 
@@ -114,9 +158,9 @@
 
 			anime({
                 targets: this.DOM.close,
-                duration: 250,
+                duration: 150,
                 easing: 'easeOutSine',
-                translateY: '100%',
+                translateY: 15,
                 opacity: 0
             });
 
@@ -130,7 +174,7 @@
             const rect = this.getProductDetailsRect();
             anime({
                 targets: [this.DOM.bgDown],
-                duration: 250,
+                duration: 180,
                 easing: 'easeOutSine',                
                 translateX: (target, index) => {
                     return index ? rect.productImgRect.left-rect.detailsImgRect.left : rect.productBgRect.left-rect.detailsBgRect.left;
@@ -150,6 +194,24 @@
                     this.DOM.productBg.style.opacity = 1;
                     this.DOM.details.style.display = 'none';                    
                     this.isAnimating = false;
+                    
+                    const qaBtn = document.getElementById('quick-actions-btn');
+                    if (qaBtn) {
+                        qaBtn.classList.remove('hidden');
+                    }
+                    const detailsDesc = this.DOM.description;
+                    if (detailsDesc) {
+                        const thankYouCard = detailsDesc.querySelector('#thank-you-card');
+                        const formCard = detailsDesc.querySelector('#send-msg-form-card');
+                        const triggerContainer = detailsDesc.querySelector('.send-msg-trigger-container');
+                        if (thankYouCard && formCard) {
+                            formCard.classList.remove('show');
+                            thankYouCard.classList.remove('hidden');
+                        }
+                        if (triggerContainer) {
+                            triggerContainer.classList.remove('hidden');
+                        }
+                    }
                 }
             });
 		}
@@ -449,11 +511,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // 1. Animate Title Characters (Using anime.js v2 compatible delay function)
         anime({
             targets: '.rainbow-text span',
-            translateY: [35, 0],
-            scale: [0.8, 1],
+            translateY: [20, 0],
+            scale: [0.9, 1],
             opacity: [0, 1],
-            delay: (el, i) => i * 35,
-            duration: 900,
+            delay: (el, i) => i * 15,
+            duration: 450,
             easing: 'easeOutBack',
             complete: () => {
                 // Clear inline transform to allow continuous CSS bounce wave animation to run smoothly
@@ -467,24 +529,67 @@ document.addEventListener("DOMContentLoaded", () => {
         // 2. Animate Title line and subtext
         anime({
             targets: ['.tm-site-header img', '.tm-site-header p'],
-            translateY: [25, 0],
+            translateY: [15, 0],
             opacity: [0, 1],
-            delay: 450,
-            duration: 800,
+            delay: 150,
+            duration: 400,
             easing: 'easeOutQuad'
         });
 
         // 3. Animate grid item cards (Using anime.js v2 compatible delay function)
         anime({
             targets: '.grid__item',
-            translateY: [45, 0],
+            translateY: [30, 0],
             opacity: [0, 1],
-            delay: (el, i) => 600 + i * 120,
-            duration: 900,
-            easing: 'easeOutElastic',
-            elasticity: 400
+            delay: (el, i) => 200 + i * 50,
+            duration: 550,
+            easing: 'easeOutBack'
+        });
+
+        // 4. Animate Quick Actions Circle Button
+        const qaBtn = document.getElementById('quick-actions-btn');
+        if (qaBtn) {
+            qaBtn.style.opacity = '0';
+            qaBtn.style.transform = 'scale(0)';
+            anime({
+                targets: qaBtn,
+                scale: [0, 1],
+                opacity: [0, 1],
+                delay: 350,
+                duration: 400,
+                easing: 'easeOutBack'
+            });
+        }
+    }
+
+    // 3. Quick Actions Overlay Trigger & Outside Click Close
+    const qaTrigger = document.getElementById('quick-actions-btn');
+    const qaOverlay = document.getElementById('quick-actions-overlay');
+    const qaClose = document.getElementById('notification-close-btn');
+
+    if (qaTrigger && qaOverlay) {
+        qaTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            qaOverlay.classList.toggle('show');
         });
     }
+
+    if (qaClose && qaOverlay) {
+        qaClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            qaOverlay.classList.remove('show');
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (qaOverlay && qaOverlay.classList.contains('show')) {
+            const dialog = qaOverlay.querySelector('.quick-actions-dialog');
+            if (dialog && !dialog.contains(e.target) && e.target !== qaTrigger) {
+                qaOverlay.classList.remove('show');
+            }
+        }
+    });
+
 });
 
 
