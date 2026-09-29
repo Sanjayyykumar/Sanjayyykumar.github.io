@@ -99,19 +99,24 @@
   var sections = ['experience', 'stack', 'work', 'about', 'contact'].map(function (id) { return doc.getElementById(id); });
   var links = $$('.nav-links a');
   var nativeProgress = window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()');
+  var tops = [], scrollTimer = 0;
+  function measureTops() { var y = window.scrollY; tops = sections.map(function (s) { return s ? s.getBoundingClientRect().top + y : 1e9; }); }
   function onScroll() {
-    var y = window.scrollY, h = root.scrollHeight - window.innerHeight;
-    if (!nativeProgress) bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
-    nav.classList.toggle('scrolled', y > 40);
-    nav.classList.toggle('hide', y > lastY && y > 480 && !navLinks.classList.contains('open'));
+    var y = window.scrollY;
+    if (!nativeProgress) { var h = root.scrollHeight - window.innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')'; }
+    var sc = y > 40; if (sc !== nav._sc) { nav._sc = sc; nav.classList.toggle('scrolled', sc); }
+    var hide = y > lastY && y > 480 && !navLinks.classList.contains('open'); if (hide !== nav._h) { nav._h = hide; nav.classList.toggle('hide', hide); }
     lastY = y;
-    var cur = '';
-    sections.forEach(function (s) { if (s && s.getBoundingClientRect().top < window.innerHeight * 0.4) cur = s.id; });
-    links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + cur && !a.classList.contains('pill')); });
+    var cur = '', line = y + window.innerHeight * 0.4;
+    for (var i = 0; i < tops.length; i++) if (tops[i] < line) cur = sections[i].id;
+    if (cur !== onScroll.cur) { onScroll.cur = cur; links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + cur && !a.classList.contains('pill')); }); }
     updateStatement(); ticking = false;
   }
+  function scrollFlag() { root.classList.add('is-scrolling'); clearTimeout(scrollTimer); scrollTimer = setTimeout(function () { root.classList.remove('is-scrolling'); }, 140); }
+  window.addEventListener('scroll', scrollFlag, { passive: true });
+  window.addEventListener('load', function () { measureTops(); onScroll(); }); measureTops();
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-  window.addEventListener('resize', onScroll); onScroll();
+  window.addEventListener('resize', function () { measureTops(); onScroll(); }); onScroll();
   var mb = $('#menuBtn');
   mb.addEventListener('click', function () {
     var open = navLinks.classList.toggle('open');
@@ -140,8 +145,6 @@
       });
       c.addEventListener('mouseleave', function () { c.style.transform = ''; });
     });
-    var orbs = $$('.orb');
-    window.addEventListener('scroll', function () { var y = window.scrollY; orbs.forEach(function (o, i) { o.style.translate = '0 ' + (-y * (0.04 + i * 0.03)).toFixed(1) + 'px'; }); }, { passive: true });
   }
 
   /* ================= animated avatar ================= */
@@ -239,14 +242,14 @@
   };
   $$('[data-avatar]').forEach(function (el) { avatars.push(new Avatar(el)); });
   if (avatars.length && !reduce) {
-    var last = performance.now(), t0 = last;
+    var last = performance.now(), t0 = last, skip = false;
     avatars.forEach(function (a) { a.sizeCanvas(); });
     window.addEventListener('resize', function () { avatars.forEach(function (a) { a.dirty = true; a.sizeCanvas(); }); });
     window.addEventListener('load', function () { avatars.forEach(function (a) { a.dirty = true; }); });
     (function loop(now) {
       var dt = Math.min(0.05, (now - last) / 1000); last = now;
       var t = (now - t0) / 1000;
-      for (var i = 0; i < avatars.length; i++) if (avatars[i].visible) avatars[i].frame(now, dt, t);
+      skip = !skip; if (!(root.classList.contains('is-scrolling') && skip)) for (var i = 0; i < avatars.length; i++) if (avatars[i].visible) avatars[i].frame(now, dt, t);
       requestAnimationFrame(loop);
     })(last);
   }
@@ -315,72 +318,5 @@
     $('#sentAgain').addEventListener('click', function () { sent.hidden = true; $('#f-name').focus(); });
   })();
 
-  /* ================= cinematic scroll: inertia + parallax ================= */
-  (function () {
-    var sm = fine && !reduce;
-    var hero = $('.hero'), hCopy = $('.hero-copy'), hVis = $('.hero-visual');
-    var shots = $$('.shot img'), snap = $('.snapshot'), plx = [];
-    shots.forEach(function (img) { plx.push({ el: img, host: img.parentNode, k: 0.07 }); });
-    var vh = window.innerHeight, heroH = 0, cache = [];
-    function measure() {
-      vh = window.innerHeight; var y = window.scrollY;
-      heroH = hero ? hero.offsetHeight : 0;
-      plx.forEach(function (p) { var r = p.host.getBoundingClientRect(); p.top = r.top + y; p.h = r.height; });
-    }
-    var pending = false;
-    function paint() {
-      pending = false;
-      var y = window.scrollY;
-      if (hero) {
-        var p = clamp(y / heroH, 0, 1);
-        if (hCopy) { hCopy.style.transform = 'translate3d(0,' + (y * 0.16).toFixed(1) + 'px,0)'; hCopy.style.opacity = (1 - p * 1.25).toFixed(3); }
-        if (hVis) hVis.style.transform = 'translate3d(0,' + (y * -0.07).toFixed(1) + 'px,0) scale(' + (1 - p * 0.06).toFixed(4) + ')';
-      }
-      for (var i = 0; i < plx.length; i++) {
-        var q = plx[i], mid = q.top + q.h / 2 - y - vh / 2;
-        if (mid > vh || mid < -vh) continue;
-        q.el.style.transform = 'translate3d(0,' + (mid * -q.k).toFixed(1) + 'px,0) scale(1.14)';
-      }
-    }
-    function queue() { if (!pending) { pending = true; requestAnimationFrame(paint); } }
-    if (!reduce) {
-      measure(); paint();
-      window.addEventListener('scroll', queue, { passive: true });
-      window.addEventListener('resize', function () { measure(); queue(); });
-      window.addEventListener('load', function () { measure(); queue(); });
-    }
-    if (!sm) return;
-
-    /* inertial wheel scrolling (pointer devices only; touch stays native) */
-    var target = window.scrollY, cur = target, raf = 0, last = 0, self = -1, rate = 9;
-    var maxY = function () { return Math.max(0, root.scrollHeight - window.innerHeight); };
-    function step(now) {
-      var dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now;
-      cur += (target - cur) * (1 - Math.exp(-dt * rate));
-      if (Math.abs(target - cur) < 0.4) { cur = target; raf = 0; } else raf = requestAnimationFrame(step);
-      self = cur; window.scrollTo({ top: cur, behavior: 'instant' });
-    }
-    function go(y, r) { target = clamp(y, 0, maxY()); rate = r || 9; if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); } }
-    window.addEventListener('wheel', function (e) {
-      if (e.ctrlKey || e.defaultPrevented || e.deltaX && Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      var el = e.target; if (el.closest && el.closest('textarea, input, select')) return;
-      if (navLinks.classList.contains('open')) return;
-      e.preventDefault();
-      var dy = e.deltaMode === 1 ? e.deltaY * 34 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
-      if (!raf) { target = window.scrollY; cur = target; }
-      go(target + dy, 8.5);
-    }, { passive: false });
-    window.addEventListener('scroll', function () {
-      if (!raf && Math.abs(window.scrollY - self) > 2) { target = cur = window.scrollY; }
-    }, { passive: true });
-    $$('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var id = a.getAttribute('href'); if (id.length < 2) { if (id === '#top') { e.preventDefault(); if (!raf) { cur = window.scrollY; } go(0, 5.5); } return; }
-        var el = doc.querySelector(id); if (!el) return;
-        e.preventDefault(); if (!raf) { cur = window.scrollY; }
-        go(el.getBoundingClientRect().top + window.scrollY - 40, 5.5);
-        if (history.replaceState) history.replaceState(null, '', id);
-      });
-    });
-  })();
+  /* scrolling is native (compositor-driven); parallax lives in CSS scroll timelines */
 })();
