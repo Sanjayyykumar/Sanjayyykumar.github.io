@@ -285,38 +285,5 @@
   });
 
   /* ================= contact form → prefilled email ================= */
-  (function () {
-    var form = $('#form'); if (!form) return;
-    var btn = $('#sendBtn'), label = btn.querySelector('span'), err = $('#formErr'), sent = $('#sent'), msg = $('#f-msg'), cnt = $('#cnt');
-    var MAIL = 'sanjayyykumarr23@gmail.com';
-    msg.addEventListener('input', function () { var n = msg.value.length; cnt.textContent = n + ' / 1200'; cnt.classList.toggle('warn', n > 1100); });
-    function busy(on) { btn.disabled = on; btn.classList.toggle('busy', on); label.textContent = on ? 'Sending…' : 'Send message'; }
-    function fallback(f) {
-      var body = f.message + '\n\n— ' + f.name + ' (' + f.email + ')\nTopic: ' + f.topic;
-      window.location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent('[' + f.topic + '] Hello from ' + f.name) + '&body=' + encodeURIComponent(body);
-    }
-    form.addEventListener('submit', function (e) {
-      e.preventDefault(); err.hidden = true;
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      var fd = new FormData(form), f = { name: fd.get('name').trim(), email: fd.get('email').trim(), message: fd.get('message').trim(), topic: fd.get('topic') || 'Hello' };
-      if (fd.get('bot-field')) return;
-      busy(true);
-      var ctl = window.AbortController ? new AbortController() : null, to = setTimeout(function () { if (ctl) ctl.abort(); }, 12000);
-      var body = new URLSearchParams(); fd.forEach(function (v, k) { body.append(k, v); });
-      fetch(form.getAttribute('action') || '/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString(), signal: ctl ? ctl.signal : undefined })
-        .then(function (r) { if (!r.ok) throw new Error(r.status); return r; })
-        .then(function () {
-          clearTimeout(to); busy(false);
-          $('#sentTo').textContent = f.email; sent.hidden = false; form.reset(); cnt.textContent = '0 / 1200';
-        })
-        .catch(function () {
-          clearTimeout(to); busy(false);
-          err.textContent = 'Couldn’t send directly from here, so I’ve opened your email app with the message ready. You can also write to ' + MAIL + '.';
-          err.hidden = false; fallback(f);
-        });
-    });
-    $('#sentAgain').addEventListener('click', function () { sent.hidden = true; $('#f-name').focus(); });
-  })();
-
   /* scrolling is native (compositor-driven); parallax lives in CSS scroll timelines */
 })();
