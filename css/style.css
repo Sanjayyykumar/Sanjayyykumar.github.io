@@ -522,3 +522,29 @@ a.v { transition: color .3s; } a.v:hover { color: var(--accent); }
   .chip-float.c2 { right:-11%; top:50%; }
   .bubble { right:9%; top:clamp(-6px,-.6svh,0px); }
 }
+
+/* footer: company link */
+.foot-co { display:inline-flex; align-items:center; gap:12px; padding:9px 16px; border:1px solid var(--line-2); border-radius:999px; color:var(--muted); transition:border-color .3s,color .3s,background .3s,transform .4s var(--ease); }
+.foot-co-k { color:var(--faint); }
+.foot-co b { font-weight:500; color:var(--ink); letter-spacing:.14em; }
+.foot-co i { font-style:normal; color:var(--accent); transition:transform .3s var(--ease); }
+.foot-co:hover, .foot-co:focus-visible { border-color:rgba(143,211,196,.55); background:rgba(143,211,196,.07); color:var(--accent); }
+.foot-co:hover i { transform:translate(2px,-2px); }
+@media (max-width:600px){ footer { justify-content:center; text-align:center; } }
+
+/* email badge: proper envelope mark */
+.chan .badge-mail { background: radial-gradient(circle at 30% 25%, rgba(124,196,255,.28), rgba(59,130,246,.10) 70%); border-color: rgba(98,170,255,.45); box-shadow: 0 8px 22px -10px rgba(59,130,246,.7), inset 0 1px 0 rgba(255,255,255,.12); transition: transform .5s var(--ease); }
+.chan .badge-mail .mail-mark { width: 30px; height: 30px; filter: drop-shadow(0 2px 4px rgba(20,60,140,.5)); }
+.chan:hover .badge-mail { transform: rotate(-6deg) scale(1.06); }
+@media (max-width:600px){ .chan .badge-mail .mail-mark { width: 26px; height: 26px; } }
+
+/* hero exit: the whole hero (strip included) fades only as it leaves the screen */
+@supports (animation-timeline: view()) {
+  @keyframes heroGone { to { opacity: 0; } }
+  @keyframes heroDrift { to { transform: translate3d(0, 40px, 0); } }
+  .hero { animation: heroGone linear both; animation-timeline: view(); animation-range: exit 65% exit 100%; }
+  .hero-copy { animation: heroDrift linear both; animation-timeline: scroll(root block); animation-range: 0 80vh; }
+}
+
+.social .mail-mark { width: 26px; height: 26px; filter: drop-shadow(0 2px 4px rgba(20,60,140,.45)); transition: transform .4s var(--ease); }
+.social:hover .mail-mark { transform: scale(1.1) rotate(-5deg); }
